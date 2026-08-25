@@ -1,5 +1,5 @@
-const CORE = 'latifa-core-v8';
-const RUNTIME = 'latifa-runtime-v8';
+const CORE = 'latifa-core-v9';
+const RUNTIME = 'latifa-runtime-v9';
 const PRECACHE = ['./index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './cheesecake.jpg'];
 
 self.addEventListener('install', e => {
