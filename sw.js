@@ -1,6 +1,6 @@
-const CORE = 'latifa-core-v12';
-const RUNTIME = 'latifa-runtime-v12';
-const PRECACHE = ['./index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './cheesecake.jpg'];
+const CORE = 'latifa-core-v13';
+const RUNTIME = 'latifa-runtime-v13';
+const PRECACHE = ['./index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './cheesecake.jpg', './bagel-cover.jpg'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CORE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
