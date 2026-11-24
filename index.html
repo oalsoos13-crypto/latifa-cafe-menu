@@ -244,7 +244,6 @@ function buildSlides(){
   const bf = DATA.find(c=>c.id==='bagels');
   add('bagel-poster.jpg');
   if(bf){ add(bf.cover); bf.items.forEach(it=>add(it.img)); }
-  DATA.forEach(c=>c.items.forEach(it=>{ if(it.isNew) add(it.img); }));
   const ms = DATA.find(c=>c.id==='12990');
   if(ms) ms.items.forEach(it=>add(it.img));
   DATA.forEach(c=>{ if(c.id!=='bagels'&&c.id!=='12990') add(c.cover); });
