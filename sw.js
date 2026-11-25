@@ -1,5 +1,5 @@
-const CORE = 'latifa-core-v15';
-const RUNTIME = 'latifa-runtime-v15';
+const CORE = 'latifa-core-v16';
+const RUNTIME = 'latifa-runtime-v16';
 const PRECACHE = ['./index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './cheesecake.jpg', './bagel-cover.jpg'];
 
 self.addEventListener('install', e => {
@@ -14,6 +14,16 @@ self.addEventListener('activate', e => {
 });
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  // Pages (the menu itself): always try the network first so price/item updates show immediately; fall back to cache when offline.
+  if (e.request.mode === 'navigate') {
+    e.respondWith(
+      fetch(e.request, {cache: 'no-store'}).then(res => {
+        if (res && res.ok) { const copy = res.clone(); caches.open(RUNTIME).then(c => c.put(e.request, copy)); }
+        return res;
+      }).catch(() => caches.match(e.request).then(hit => hit || caches.match('./index.html')))
+    );
+    return;
+  }
   e.respondWith(
     caches.match(e.request, {ignoreSearch: false}).then(hit => {
       if (hit) return hit;
